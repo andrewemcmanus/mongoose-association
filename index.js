@@ -40,6 +40,15 @@ app.get('/blog', (req, res) => {
   res.send('Post completed');
 });
 
+app.get('/comment', (req, res) => {
+  const secondPost = new BlogPost({ title: 'Cool Post', body: `Let's make a cool post`});
+  // create a comment:
+  const comment = { header: 'Cool', content: 'This is a cool post'}
+  secondPost.comments.push(comment);
+  // save post to database:
+  secondPost.save();
+})
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
